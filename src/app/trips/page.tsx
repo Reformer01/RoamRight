@@ -13,9 +13,9 @@ import {
 import { Logo } from '@/components/logo';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { LayoutDashboard, Plane, Map, Settings } from 'lucide-react';
-import { Dashboard } from '@/components/dashboard';
+import { MyTripsPage } from '@/components/my-trips-page';
 
-export default function Home() {
+export default function TripsPage() {
   return (
     <SidebarProvider>
       <Sidebar className="border-r">
@@ -25,17 +25,17 @@ export default function Home() {
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton isActive>
-                <LayoutDashboard />
-                Dashboard
+              <SidebarMenuButton asChild>
+                <Link href="/">
+                  <LayoutDashboard />
+                  Dashboard
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/trips">
-                  <Plane />
-                  My Trips
-                </Link>
+              <SidebarMenuButton isActive>
+                <Plane />
+                My Trips
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
@@ -72,7 +72,7 @@ export default function Home() {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <Dashboard />
+        <MyTripsPage />
       </SidebarInset>
     </SidebarProvider>
   );
