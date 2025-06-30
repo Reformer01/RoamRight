@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Plus,
 } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -37,9 +38,9 @@ export function Dashboard() {
             <div className="mb-4 flex items-center justify-between">
               <h2 className="font-headline text-xl font-semibold">My Trips</h2>
               <Button variant="link" className="text-primary" asChild>
-                <a href="/trips">
+                <Link href="/trips">
                   View All <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </Link>
               </Button>
             </div>
             <Carousel
@@ -78,8 +79,10 @@ export function Dashboard() {
                   <h2 className="font-headline text-xl font-semibold">
                     Explore Destinations
                   </h2>
-                   <Button variant="link" className="text-primary">
-                    View All <ArrowRight className="ml-2 h-4 w-4" />
+                   <Button variant="link" className="text-primary" asChild>
+                     <Link href="/destinations">
+                        View All <ArrowRight className="ml-2 h-4 w-4" />
+                     </Link>
                   </Button>
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

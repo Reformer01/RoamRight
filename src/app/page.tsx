@@ -39,9 +39,11 @@ export default function Home() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton>
-                <Map />
-                Destinations
+              <SidebarMenuButton asChild>
+                <Link href="/destinations">
+                  <Map />
+                  Destinations
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

@@ -13,9 +13,9 @@ import {
 import { Logo } from '@/components/logo';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { LayoutDashboard, Plane, Map, Settings } from 'lucide-react';
-import { MyTripsPage } from '@/components/my-trips-page';
+import { DestinationDetailPage } from '@/components/destination-detail-page';
 
-export default function TripsPage() {
+export default function Page({ params }: { params: { slug: string } }) {
   return (
     <SidebarProvider>
       <Sidebar className="border-r">
@@ -33,17 +33,17 @@ export default function TripsPage() {
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton isActive>
-                <Plane />
-                My Trips
+              <SidebarMenuButton asChild>
+                <Link href="/trips">
+                  <Plane />
+                  My Trips
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild>
-                <Link href="/destinations">
-                  <Map />
-                  Destinations
-                </Link>
+              <SidebarMenuButton isActive>
+                <Map />
+                Destinations
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -74,7 +74,7 @@ export default function TripsPage() {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <MyTripsPage />
+        <DestinationDetailPage slug={params.slug} />
       </SidebarInset>
     </SidebarProvider>
   );
