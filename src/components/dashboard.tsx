@@ -97,7 +97,7 @@ export function Dashboard() {
                   </Button>
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {destinations.map((dest, index) => (
+                  {destinations.slice(0, 4).map((dest, index) => (
                     <DestinationCard key={index} {...dest} />
                   ))}
                 </div>

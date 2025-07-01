@@ -44,6 +44,8 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
   if (!destination) {
     notFound();
   }
+  
+  const destinationFullName = `${destination.place}, ${destination.country}`;
 
   return (
     <div className="flex h-full min-h-svh flex-col">
@@ -51,7 +53,7 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
         <div className="flex items-center gap-2">
           <SidebarTrigger className="md:hidden" />
           <h1 className="truncate font-headline text-2xl font-semibold">
-            {destination.name}
+            {destination.place}
           </h1>
         </div>
       </header>
@@ -59,7 +61,7 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
         <div className="relative h-64 w-full md:h-96">
           <Image
             src={destination.image}
-            alt={destination.name}
+            alt={destination.place}
             layout="fill"
             objectFit="cover"
             data-ai-hint={destination.hint}
@@ -70,7 +72,7 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
 
         <div className="p-4 md:p-6">
           <h1 className="font-headline text-4xl font-bold md:text-5xl -mt-16 relative z-10">
-            {destination.name}
+            {destination.place}
           </h1>
 
           <Tabs defaultValue="overview" className="mt-6">
@@ -82,9 +84,9 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
             </TabsList>
             <TabsContent value="overview" className="mt-6 space-y-8">
                <section>
-                    <h2 className="font-headline text-2xl font-semibold mb-4">About {destination.name}</h2>
+                    <h2 className="font-headline text-2xl font-semibold mb-4">About {destination.place}</h2>
                     <p className="text-muted-foreground leading-relaxed">
-                        Welcome to {destination.name}! This is a placeholder description. You can use the AI Guide to ask specific questions and get detailed information about your trip, including insider tips, cultural etiquette, and hidden gems. Start by asking something like, "What are some family-friendly activities?" or "What's the best way to get around the city?"
+                        Welcome to {destination.place}! This is a placeholder description. You can use the AI Guide to ask specific questions and get detailed information about your trip, including insider tips, cultural etiquette, and hidden gems. Start by asking something like, "What are some family-friendly activities?" or "What's the best way to get around the city?"
                     </p>
                 </section>
                 <section>
@@ -92,7 +94,7 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
                     <div className="aspect-video w-full overflow-hidden rounded-lg border">
                         <Image
                             src="https://placehold.co/1200x400.png"
-                            alt={`Map of ${destination.name}`}
+                            alt={`Map of ${destination.place}`}
                             width={1200}
                             height={400}
                             data-ai-hint="city map"
@@ -109,10 +111,10 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
                 </div>
             </TabsContent>
             <TabsContent value="weather" className="mt-6">
-                <WeatherForecast destinationName={destination.name} />
+                <WeatherForecast destinationName={destinationFullName} />
             </TabsContent>
             <TabsContent value="ai-guide" className="mt-6">
-                <AIGuide destinationName={destination.name} />
+                <AIGuide destinationName={destinationFullName} />
             </TabsContent>
           </Tabs>
         </div>

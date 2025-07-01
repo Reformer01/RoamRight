@@ -32,25 +32,29 @@ export const trips = [
 
 export const destinations = [
   {
-    name: 'Paris, France',
+    place: 'Paris',
+    country: 'France',
     image: 'https://placehold.co/600x400.png',
     hint: 'paris france',
     slug: 'paris-france',
   },
   {
-    name: 'Rome, Italy',
+    place: 'Rome',
+    country: 'Italy',
     image: 'https://placehold.co/600x400.png',
     hint: 'rome italy',
     slug: 'rome-italy',
   },
   {
-    name: 'Bali, Indonesia',
+    place: 'Bali',
+    country: 'Indonesia',
     image: 'https://placehold.co/600x400.png',
     hint: 'bali indonesia',
     slug: 'bali-indonesia',
   },
   {
-    name: 'Machu Picchu, Peru',
+    place: 'Machu Picchu',
+    country: 'Peru',
     image: 'https://placehold.co/600x400.png',
     hint: 'machu picchu',
     slug: 'machu-picchu-peru',
