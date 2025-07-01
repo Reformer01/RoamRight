@@ -65,6 +65,7 @@ export const destinations = [
     slug: 'rio-de-janeiro-brazil',
     rating: 5.0,
     reviews: 143,
+    moods: ['adventure', 'nightlife', 'beach'],
   },
   {
     place: 'Paris',
@@ -74,6 +75,7 @@ export const destinations = [
     slug: 'paris-france',
     rating: 4.8,
     reviews: 250,
+    moods: ['culture', 'romance', 'foodie'],
   },
   {
     place: 'Rome',
@@ -83,6 +85,7 @@ export const destinations = [
     slug: 'rome-italy',
     rating: 4.9,
     reviews: 180,
+    moods: ['culture', 'history', 'foodie'],
   },
   {
     place: 'Bali',
@@ -92,6 +95,7 @@ export const destinations = [
     slug: 'bali-indonesia',
     rating: 4.7,
     reviews: 320,
+    moods: ['relaxation', 'beach', 'adventure'],
   },
 ];
 

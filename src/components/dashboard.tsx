@@ -4,6 +4,27 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BottomNavBar } from "./bottom-nav-bar";
 import { ItineraryOptimizer } from "./itinerary-optimizer";
 import { FlightTracker } from "./flight-tracker";
+import { BedDouble, Landmark, MountainSnow, Utensils } from "lucide-react";
+import Link from "next/link";
+import { Card } from "./ui/card";
+
+const moods = [
+    { name: 'Relax & Recharge', icon: BedDouble, slug: 'relaxation' },
+    { name: 'Thrill Seeker', icon: MountainSnow, slug: 'adventure' },
+    { name: 'Cultural Explorer', icon: Landmark, slug: 'culture' },
+    { name: 'Foodie Paradise', icon: Utensils, slug: 'foodie' },
+];
+
+function MoodCard({ name, icon: Icon, slug }: { name: string, icon: React.ElementType, slug: string }) {
+    return (
+        <Link href={`/destinations?mood=${slug}`} className="block group">
+            <Card className="flex flex-col items-center justify-center p-4 text-center h-32 transition-all duration-300 ease-in-out group-hover:bg-primary/10 group-hover:scale-105 group-hover:shadow-lg">
+                <Icon className="w-8 h-8 text-primary mb-2 transition-transform group-hover:-translate-y-1" />
+                <p className="font-semibold text-sm text-foreground">{name}</p>
+            </Card>
+        </Link>
+    )
+}
 
 export function Dashboard() {
   return (
@@ -22,6 +43,15 @@ export function Dashboard() {
             <AvatarFallback>A</AvatarFallback>
           </Avatar>
         </header>
+        
+        <section className="space-y-4">
+            <h2 className="text-xl font-bold font-headline">Plan by Mood</h2>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                {moods.map((mood) => (
+                    <MoodCard key={mood.slug} {...mood} />
+                ))}
+            </div>
+        </section>
 
         <div className="space-y-8">
             <FlightTracker />

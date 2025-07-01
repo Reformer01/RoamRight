@@ -15,6 +15,7 @@ export type Destination = {
   slug: string;
   rating: number;
   reviews: number;
+  moods: string[];
 };
 
 export function DestinationCard(destination: Destination) {
