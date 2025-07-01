@@ -9,9 +9,13 @@ import { WeatherForecast } from './weather-forecast';
 import { Button } from './ui/button';
 import { ArrowLeft, Heart } from 'lucide-react';
 import { AttractionCard } from './attraction-card';
+import { useFavorites } from '@/hooks/use-favorites';
+import { cn } from '@/lib/utils';
+import type { Destination } from './destination-card';
 
 export function DestinationDetailPage({ slug }: { slug: string }) {
   const router = useRouter();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const destination = destinations.find((d) => d.slug === slug);
   const destinationAttractions = (attractions as any)[slug] || [];
 
@@ -30,8 +34,13 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
             <span className="sr-only">Back</span>
           </Button>
           <h1 className="text-lg font-bold truncate">{destination.place}</h1>
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <Heart />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full"
+            onClick={() => toggleFavorite(destination as Destination)}
+            >
+            <Heart className={cn('transition-colors', isFavorite(slug) ? 'fill-red-500 text-red-500' : '')} />
             <span className="sr-only">Favorite</span>
           </Button>
         </div>

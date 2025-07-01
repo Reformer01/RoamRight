@@ -1,7 +1,11 @@
+"use client";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Heart, Star } from 'lucide-react';
+import { useFavorites } from '@/hooks/use-favorites';
+import { cn } from '@/lib/utils';
 
 export type Destination = {
   place: string;
@@ -13,20 +17,31 @@ export type Destination = {
   reviews: number;
 };
 
-export function DestinationCard({ place, country, image, hint, slug, rating, reviews }: Destination) {
+export function DestinationCard(destination: Destination) {
+  const { place, country, image, hint, slug, rating, reviews } = destination;
+  const { toggleFavorite, isFavorite } = useFavorites();
+
   return (
-    <div className="relative w-full h-96 overflow-hidden rounded-3xl">
+    <div className="relative w-full h-96 overflow-hidden rounded-3xl group">
        <Link href={`/destinations/${slug}`} className="block h-full w-full">
         <Image
           src={image}
           alt={place}
           fill
           data-ai-hint={hint}
-          className="object-cover transition-transform duration-300 hover:scale-105"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
        </Link>
-      <Button variant="secondary" size="icon" className="absolute top-4 right-4 h-10 w-10 rounded-full bg-black/20 text-white backdrop-blur-sm border-none hover:bg-black/40">
-        <Heart />
+      <Button
+        variant="secondary"
+        size="icon"
+        className="absolute top-4 right-4 h-10 w-10 rounded-full bg-black/20 text-white backdrop-blur-sm border-none hover:bg-black/40"
+        onClick={(e) => {
+            e.preventDefault();
+            toggleFavorite(destination);
+        }}
+        >
+        <Heart className={cn('transition-colors', isFavorite(slug) ? 'fill-red-500 text-red-500' : '')} />
       </Button>
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
         <div>
