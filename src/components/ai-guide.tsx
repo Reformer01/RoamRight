@@ -71,26 +71,30 @@ export function AIGuide({ destinationName }: { destinationName: string }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="font-headline flex items-center gap-2">
-          <Sparkles className="text-primary" />
-          <span>Ask the AI Guide</span>
-        </CardTitle>
-        <CardDescription>
-          Have a question about {destinationName}? Get instant, detailed answers from our AI travel expert.
-        </CardDescription>
+        <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Sparkles className="h-6 w-6" />
+            </div>
+            <div>
+                <CardTitle className="font-headline text-2xl">AI Guide</CardTitle>
+                <CardDescription>
+                Ask our AI travel expert about {destinationName}.
+                </CardDescription>
+            </div>
+        </div>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="query"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your Question</FormLabel>
+                  <FormLabel className="sr-only">Your Question</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="e.g., 'What are some hidden gems only locals know about?' or 'Is it easy to use public transport?'"
+                      placeholder="e.g., 'What are some hidden gems only locals know about?'"
                       rows={4}
                       {...field}
                     />
@@ -99,7 +103,7 @@ export function AIGuide({ destinationName }: { destinationName: string }) {
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting} className="w-full md:w-auto">
               {isSubmitting ? "Thinking..." : "Ask AI Guide"}
             </Button>
           </form>
@@ -115,11 +119,11 @@ export function AIGuide({ destinationName }: { destinationName: string }) {
 function LoadingResult() {
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2">
-        <Bot className="h-6 w-6 text-primary" />
+      <div className="flex items-center gap-3">
+        <Skeleton className="h-10 w-10 rounded-full" />
         <Skeleton className="h-6 w-48" />
       </div>
-      <div className="pl-8 space-y-2">
+      <div className="pl-13 space-y-2">
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-3/4" />
@@ -131,13 +135,15 @@ function LoadingResult() {
 function GuideResult({ result }: { result: GenerateDestinationDetailsOutput }) {
   return (
     <div className="space-y-4">
-       <div className="flex items-center gap-2">
-            <Bot className="h-6 w-6 text-primary" />
-            <h3 className="font-headline text-lg font-semibold text-primary">AI Guide Response</h3>
+       <div className="flex items-start gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary flex-shrink-0">
+                <Bot className="h-6 w-6" />
+            </div>
+            <div className="pt-1">
+                <h3 className="font-headline text-lg font-semibold text-primary">AI Guide Response</h3>
+                <p className="whitespace-pre-wrap leading-relaxed text-muted-foreground">{result.details}</p>
+            </div>
         </div>
-      <div className="pl-8">
-        <p className="whitespace-pre-wrap leading-relaxed">{result.details}</p>
-      </div>
     </div>
   );
 }

@@ -18,6 +18,7 @@ import { type GetWeatherForecastOutput } from '@/ai/flows/get-weather-forecast';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Skeleton } from './ui/skeleton';
+import { Separator } from './ui/separator';
 
 const iconMap: { [key: string]: React.FC<LucideProps> } = {
   Sun,
@@ -72,79 +73,73 @@ export function WeatherForecast({ destinationName }: { destinationName: string }
   const upcoming = forecast.forecast.slice(1);
 
   return (
-    <div className="space-y-8">
-      <Card>
+    <Card>
         <CardHeader>
-          <CardTitle className="font-headline">Current Weather</CardTitle>
-           <CardDescription>
-            Weather conditions for {today.day}, {today.date} in {destinationName}.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col items-center justify-center gap-4 text-center md:flex-row md:justify-start md:text-left">
-          <WeatherIcon name={today.icon} className="h-24 w-24 text-primary" />
-          <div className="flex-1">
-            <p className="text-6xl font-bold">{today.high}°C</p>
-            <p className="text-lg text-muted-foreground">{today.condition}</p>
-            <p className="text-sm text-muted-foreground">High: {today.high}°C / Low: {today.low}°C</p>
-          </div>
-        </CardContent>
-      </Card>
-      
-      <Card>
-        <CardHeader>
-          <CardTitle className="font-headline">10-Day Forecast</CardTitle>
+            <CardTitle className="font-headline text-2xl">Weather in {destinationName}</CardTitle>
+            <CardDescription>
+                10-day forecast starting {today.date}.
+            </CardDescription>
         </CardHeader>
         <CardContent>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+            {/* Today's Forecast */}
+            <div className="flex flex-col items-center justify-center gap-4 text-center md:flex-row md:items-start md:justify-between md:text-left p-6 rounded-2xl bg-secondary/50">
+                <div className="flex-1">
+                    <p className="font-bold text-muted-foreground">{today.day}, {today.date}</p>
+                    <p className="text-7xl font-bold text-primary">{today.high}°C</p>
+                    <p className="text-xl font-semibold">{today.condition}</p>
+                    <p className="text-sm text-muted-foreground">High: {today.high}°C / Low: {today.low}°C</p>
+                </div>
+                 <WeatherIcon name={today.icon} className="h-32 w-32 text-primary" />
+            </div>
+
+            <Separator className="my-6" />
+
+            {/* Upcoming Forecast */}
+            <div className="grid grid-cols-3 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
                 {upcoming.map((day, index) => (
-                    <div key={index} className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                        <p className="font-semibold">{day.day.substring(0, 3)}</p>
+                    <div key={index} className="flex flex-col items-center gap-2 rounded-xl border p-3 text-center transition-all hover:bg-secondary/50">
+                        <p className="font-bold text-sm">{day.day.substring(0, 3)}</p>
                         <WeatherIcon name={day.icon} className="h-8 w-8 text-primary" />
-                        <p className="font-semibold">{day.high}°</p>
-                        <p className="text-sm text-muted-foreground">{day.low}°</p>
+                        <div className="flex items-baseline gap-1">
+                            <p className="font-bold text-lg">{day.high}°</p>
+                            <p className="text-sm text-muted-foreground">{day.low}°</p>
+                        </div>
                     </div>
                 ))}
             </div>
         </CardContent>
-      </Card>
-    </div>
+    </Card>
   );
 }
 
 function LoadingSkeleton() {
     return (
-        <div className="space-y-8">
-            <Card>
-                <CardHeader>
-                    <Skeleton className="h-8 w-48" />
-                    <Skeleton className="h-4 w-64" />
-                </CardHeader>
-                <CardContent className="flex flex-col items-center justify-center gap-4 text-center md:flex-row md:justify-start md:text-left">
-                    <Skeleton className="h-24 w-24 rounded-full" />
-                    <div className="flex-1 space-y-2">
-                         <Skeleton className="h-16 w-32" />
-                         <Skeleton className="h-6 w-40" />
-                         <Skeleton className="h-4 w-48" />
+        <Card>
+             <CardHeader>
+                <Skeleton className="h-8 w-64" />
+                <Skeleton className="h-4 w-48" />
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col items-center justify-center gap-4 text-center md:flex-row md:items-start md:justify-between md:text-left p-6 rounded-2xl bg-secondary/50">
+                     <div className="flex-1 space-y-2">
+                        <Skeleton className="h-5 w-32" />
+                        <Skeleton className="h-20 w-32" />
+                        <Skeleton className="h-6 w-24" />
+                        <Skeleton className="h-4 w-40" />
                     </div>
-                </CardContent>
-            </Card>
-            <Card>
-                <CardHeader>
-                     <Skeleton className="h-8 w-48" />
-                </CardHeader>
-                 <CardContent>
-                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-                        {Array.from({ length: 9 }).map((_, index) => (
-                             <div key={index} className="flex flex-col items-center gap-2 rounded-lg border p-4 text-center">
-                                <Skeleton className="h-6 w-10" />
-                                <Skeleton className="h-8 w-8 rounded-full" />
-                                <Skeleton className="h-6 w-8" />
-                                <Skeleton className="h-4 w-8" />
-                            </div>
-                        ))}
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
+                    <Skeleton className="h-32 w-32 rounded-full" />
+                </div>
+                <Separator className="my-6" />
+                <div className="grid grid-cols-3 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9">
+                    {Array.from({ length: 9 }).map((_, index) => (
+                        <div key={index} className="flex flex-col items-center gap-2 rounded-xl border p-3 text-center">
+                            <Skeleton className="h-5 w-10" />
+                            <Skeleton className="h-8 w-8 rounded-full" />
+                            <Skeleton className="h-6 w-12" />
+                        </div>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
     )
 }
