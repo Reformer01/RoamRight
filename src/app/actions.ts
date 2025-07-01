@@ -15,6 +15,11 @@ import {
   type OptimizeTravelRoutesInput,
   type OptimizeTravelRoutesOutput,
 } from '@/ai/flows/optimize-travel-routes';
+import {
+  getFlightUpdates,
+  type GetFlightUpdatesInput,
+  type GetFlightUpdatesOutput,
+} from '@/ai/flows/get-flight-updates';
 
 export async function optimizeItineraryAction(
   data: OptimizeTravelRoutesInput
@@ -60,6 +65,21 @@ export async function getWeatherForecastAction(
     return {
       data: null,
       error: 'Failed to get weather forecast. Please try again.',
+    };
+  }
+}
+
+export async function getFlightUpdatesAction(
+  data: GetFlightUpdatesInput
+): Promise<{ data: GetFlightUpdatesOutput | null; error: string | null }> {
+  try {
+    const result = await getFlightUpdates(data);
+    return { data: result, error: null };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      error: 'Failed to get flight updates. Please try again.',
     };
   }
 }

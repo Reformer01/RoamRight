@@ -19,6 +19,7 @@ import { destinations, recommendations, trips } from "@/lib/data";
 import { TripCard } from "./trip-card";
 import { DestinationCard } from "./destination-card";
 import { RecommendationCard } from "./recommendation-card";
+import { FlightTracker } from "./flight-tracker";
 
 export function Dashboard() {
   return (
@@ -63,15 +64,25 @@ export function Dashboard() {
               <CarouselNext className="hidden lg:flex" />
             </Carousel>
           </section>
-
-          <section>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-headline text-xl font-semibold">
-                AI Itinerary Optimizer
-              </h2>
-            </div>
-            <ItineraryOptimizer />
-          </section>
+          
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <section>
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="font-headline text-xl font-semibold">
+                  AI Itinerary Optimizer
+                </h2>
+              </div>
+              <ItineraryOptimizer />
+            </section>
+             <section>
+                <div className="mb-4 flex items-center justify-between">
+                    <h2 className="font-headline text-xl font-semibold">
+                        Flight Status
+                    </h2>
+                </div>
+                <FlightTracker />
+             </section>
+          </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               <section>
