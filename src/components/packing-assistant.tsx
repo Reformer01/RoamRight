@@ -27,7 +27,7 @@ import {
   type GeneratePackingListOutput,
 } from "@/ai/flows/generate-packing-list";
 import { generatePackingListAction } from "@/app/actions";
-import { Suitcase, Sparkles, Bot, Check, Info } from "lucide-react";
+import { Briefcase, Sparkles, Bot, Check, Info } from "lucide-react";
 import { Skeleton } from "./ui/skeleton";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { Checkbox } from "./ui/checkbox";
@@ -77,7 +77,7 @@ export function PackingAssistant({ destinationName }: { destinationName: string 
     <Card>
       <CardHeader>
         <CardTitle className="font-headline flex items-center gap-2">
-            <Suitcase className="text-primary" />
+            <Briefcase className="text-primary" />
             <span>Smart Packing Assistant</span>
         </CardTitle>
         <CardDescription>
