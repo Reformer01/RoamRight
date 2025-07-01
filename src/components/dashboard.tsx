@@ -3,7 +3,6 @@
 import {
   Search,
   SlidersHorizontal,
-  CircleArrowRight,
 } from "lucide-react";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,8 +12,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { destinations, trips } from "@/lib/data";
 import { TripCard } from "./trip-card";
