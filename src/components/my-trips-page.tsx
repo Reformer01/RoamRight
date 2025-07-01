@@ -13,10 +13,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { trips } from "@/lib/data";
 import { ChevronLeft, Heart } from "lucide-react";
 import { BottomNavBar } from "./bottom-nav-bar";
+import { PackingAssistant } from "./packing-assistant";
 
 export function MyTripsPage() {
   const trip = trips[0]; // Use the first trip as an example
   const itinerary = trip.itinerary;
+  const destinationFullName = `${trip.name}`; // Simplified for example
 
   return (
     <div className="bg-background min-h-svh pb-24">
@@ -49,8 +51,9 @@ export function MyTripsPage() {
       
       <main className="p-4">
         <Tabs defaultValue="schedule" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="schedule">Tour schedule</TabsTrigger>
+              <TabsTrigger value="packing">Packing List</TabsTrigger>
               <TabsTrigger value="accommodation">Accommodation</TabsTrigger>
               <TabsTrigger value="booking">Booking details</TabsTrigger>
             </TabsList>
@@ -94,6 +97,9 @@ export function MyTripsPage() {
                     </AccordionItem>
                 ))}
               </Accordion>
+            </TabsContent>
+            <TabsContent value="packing" className="mt-6">
+                <PackingAssistant destinationName={destinationFullName} />
             </TabsContent>
             <TabsContent value="accommodation" className="mt-6 text-center">
                 <p className="text-muted-foreground">Accommodation details will be shown here.</p>

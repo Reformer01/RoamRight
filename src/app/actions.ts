@@ -20,6 +20,11 @@ import {
   type GetFlightUpdatesInput,
   type GetFlightUpdatesOutput,
 } from '@/ai/flows/get-flight-updates';
+import {
+  generatePackingList,
+  type GeneratePackingListInput,
+  type GeneratePackingListOutput,
+} from '@/ai/flows/generate-packing-list';
 
 export async function optimizeItineraryAction(
   data: OptimizeTravelRoutesInput
@@ -80,6 +85,21 @@ export async function getFlightUpdatesAction(
     return {
       data: null,
       error: 'Failed to get flight updates. Please try again.',
+    };
+  }
+}
+
+export async function generatePackingListAction(
+  data: GeneratePackingListInput
+): Promise<{ data: GeneratePackingListOutput | null; error: string | null }> {
+  try {
+    const result = await generatePackingList(data);
+    return { data: result, error: null };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      error: 'Failed to generate packing list. Please try again.',
     };
   }
 }
