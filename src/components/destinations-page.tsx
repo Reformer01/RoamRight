@@ -4,7 +4,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { destinations } from "@/lib/data";
 import { DestinationCard } from "./destination-card";
 import { Button } from "./ui/button";
-import { ArrowLeft, Hiking, Bike } from "lucide-react";
+import { ArrowLeft, Mountain, Bike } from "lucide-react";
 
 // Lucide doesn't have a Kayak icon, so we use a generic Ship icon
 const KayakIcon = (props: any) => (
@@ -44,7 +44,7 @@ export function DestinationsPage() {
             <h1 className="text-3xl font-bold font-headline">{pageTitle}</h1>
             <div className="flex space-x-2 overflow-x-auto pb-2">
             <Button variant="secondary" className="rounded-full font-medium flex-shrink-0">
-                <Hiking className="mr-2 h-4 w-4" /> Hiking
+                <Mountain className="mr-2 h-4 w-4" /> Hiking
             </Button>
             <Button variant="secondary" className="rounded-full font-medium flex-shrink-0">
                 <KayakIcon className="mr-2 h-4 w-4" /> Kayaking
