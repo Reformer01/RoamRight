@@ -4,9 +4,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { BottomNavBar } from "./bottom-nav-bar";
 import { ItineraryOptimizer } from "./itinerary-optimizer";
 import { FlightTracker } from "./flight-tracker";
-import { BedDouble, Landmark, MountainSnow, Utensils } from "lucide-react";
+import { BedDouble, Landmark, MountainSnow, Utensils, ClipboardList } from "lucide-react";
 import Link from "next/link";
-import { Card } from "./ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const moods = [
     { name: 'Relax & Recharge', icon: BedDouble, slug: 'relaxation' },
@@ -54,6 +54,19 @@ export function Dashboard() {
         </section>
 
         <div className="space-y-8">
+            <Link href="/planner" className="block">
+                <Card className="hover:bg-primary/10 transition-colors">
+                    <CardHeader>
+                        <CardTitle className="font-headline flex items-center gap-2">
+                            <ClipboardList className="text-primary" />
+                            <span>Dynamic Itinerary Planner</span>
+                        </CardTitle>
+                        <CardDescription>
+                            Build and organize your trip with our new drag-and-drop planner.
+                        </CardDescription>
+                    </CardHeader>
+                </Card>
+            </Link>
             <FlightTracker />
             <ItineraryOptimizer />
         </div>

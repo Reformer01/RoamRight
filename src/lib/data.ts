@@ -150,3 +150,11 @@ export const attractions = {
     },
   ]
 };
+
+export const sampleActivities = [
+  { id: '1', name: 'Visit the Eiffel Tower', duration: '3 hours' },
+  { id: '2', name: 'Explore the Louvre Museum', duration: '4 hours' },
+  { id: '3', name: 'Walk along the Seine River', duration: '2 hours' },
+  { id: '4', name: 'Enjoy a croissant at a local bakery', duration: '1 hour' },
+  { id: '5', name: 'Climb the Arc de Triomphe', duration: '1.5 hours' },
+];
