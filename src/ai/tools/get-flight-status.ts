@@ -29,6 +29,8 @@ export const getFlightStatus = ai.defineTool(
       arrivalTerminal: z.string().optional(),
       departureGate: z.string().optional(),
       arrivalGate: z.string().optional(),
+      departureTimezone: z.string().optional().describe("The IANA timezone name for the departure airport, e.g., 'America/New_York'."),
+      arrivalTimezone: z.string().optional().describe("The IANA timezone name for the arrival airport, e.g., 'Europe/London'."),
     }),
   },
   async (input) => {
@@ -47,6 +49,8 @@ export const getFlightStatus = ai.defineTool(
       departureGate: `D${Math.floor(Math.random() * 20) + 1}`,
       arrivalTerminal: '5',
       arrivalGate: `A${Math.floor(Math.random() * 15) + 1}`,
+      departureTimezone: 'America/New_York',
+      arrivalTimezone: 'Europe/London',
     };
   }
 );

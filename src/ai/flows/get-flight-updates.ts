@@ -41,6 +41,8 @@ const prompt = ai.definePrompt({
   Date: ${new Date().toISOString().split('T')[0]}
 
   Once you have the flight details from the tool, provide a clear, concise, and friendly update to the user.
+  The tool returns times in UTC (ISO 8601 format) but also provides the IANA timezone for departure and arrival.
+  Present the times to the user in a readable format, making sure to clearly state the local time and timezone for both departure and arrival (e.g., "10:30 AM EST" or "1:45 PM GMT").
   `,
 });
 

@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "RoamRight",
   description: "Your intelligent travel planner.",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
