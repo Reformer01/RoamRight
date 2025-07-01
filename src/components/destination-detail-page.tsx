@@ -5,8 +5,9 @@ import { notFound } from 'next/navigation';
 import { destinations, attractions } from '@/lib/data';
 import { SidebarTrigger } from './ui/sidebar';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { AIGuide } from './ai-guide';
+import { WeatherForecast } from './weather-forecast';
 
 type Attraction = {
   name: string;
@@ -76,6 +77,7 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="attractions">Attractions</TabsTrigger>
+              <TabsTrigger value="weather">Weather</TabsTrigger>
               <TabsTrigger value="ai-guide">AI Guide</TabsTrigger>
             </TabsList>
             <TabsContent value="overview" className="mt-6 space-y-8">
@@ -105,6 +107,9 @@ export function DestinationDetailPage({ slug }: { slug: string }) {
                         <AttractionCard key={index} {...attraction} />
                     ))}
                 </div>
+            </TabsContent>
+            <TabsContent value="weather" className="mt-6">
+                <WeatherForecast destinationName={destination.name} />
             </TabsContent>
             <TabsContent value="ai-guide" className="mt-6">
                 <AIGuide destinationName={destination.name} />
